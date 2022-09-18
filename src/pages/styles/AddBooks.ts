@@ -42,12 +42,10 @@ export const inputDescricao = styled(inputTitle)`
 
 export const imgContainer = styled.View`
   margin-top: 30px;
-  width: 305px;
   align-self:center;
+  overflow:hidden;
+  border-radius:3px;
   background-color: #eee;
-  padding-vertical: 2px;
-  padding-horizontal: 2px;
-  border-radius: 2px;
 `
 
 export const photoIcon = styled.TouchableOpacity`

@@ -99,14 +99,17 @@ const AddBooks: React.FC<HomeScreenProps> = (props) => {
         item.title = title 
         item.description = description
         item.id = params.book.id
-        item.photo = params.book.photo
+        item.photo = photo
+        return item
+      }else{
         return item
       }
-      return item
+      
      })
+     await AsyncStorage.setItem('books', JSON.stringify(bookAtt))
+     props.navigation.push('Main')
+      
 
-      await AsyncStorage.setItem('books', JSON.stringify(bookAtt))
-      props.navigation.push('Main')
     }
   }
   
@@ -122,7 +125,7 @@ const AddBooks: React.FC<HomeScreenProps> = (props) => {
 
       {photo && (
         <C.imgContainer>
-          <Image source={{ uri: photo }} style={{ width: 300, height: 200 }} />
+          <Image source={{ uri: photo }} style={{ width: 180, height: 220 }} />
         </C.imgContainer>
       )}
       <C.photoIcon onPress={pickImage}>
@@ -167,7 +170,6 @@ const AddBooks: React.FC<HomeScreenProps> = (props) => {
           <C.saveButtonText
             style={{ fontFamily: 'Kalam' }}
             validate={isValid()}
-            onPress={onSave}
           >
             Atualizar
           </C.saveButtonText>

@@ -1,5 +1,7 @@
 import { useState, useEffect, useCallback } from 'react'
 import {
+  ScrollView,
+  Text,
   Image,
   FlatList
 } from 'react-native'
@@ -71,35 +73,57 @@ const Main: React.FC<HomeScreenProps> = props => {
   }
   if(fontsLoaded)
   return (
-    <C.Container>
-      <C.ToollBox>
-        <C.Title style={{fontFamily:'Kalam'}}>
-          Lista de Leitura
-        </C.Title>
-        <C.AddButton onPress={() => props.navigation.push('AddBooks')}>
-          <Ionicons name="add" size={30} color="#ffffff" />
-        </C.AddButton>
-      </C.ToollBox>
-      <FlatList
-        data={books}
-        keyExtractor={item => item.id}
-        renderItem={({ item }) => (
-          <>
+    <ScrollView horizontal={true} showsHorizontalScrollIndicator={false}>
+      <C.Container>
+        <C.ToollBox>
+          <C.Title style={{ fontFamily: 'Kalam' }}>Lista de Leitura</C.Title>
+          <C.AddButton onPress={() => props.navigation.push('AddBooks')}>
+            <Ionicons name="add" size={30} color="#ffffff" />
+          </C.AddButton>
+        </C.ToollBox>
+        <FlatList
+          data={books}
+          keyExtractor={item => item.id}
+          renderItem={({ item }) => (
             <C.itemContainer>
-              <C.itemButton onPress={() => handleRead(item.read, item.id)}>
-                <C.itemText style={{fontFamily:'Kalam'}} read={item.read} >{item.title}</C.itemText>
-              </C.itemButton>
-              <C.editButton onPress={() => handleItem(item.id)}>
-                <AntDesign name="edit" size={25} color="#2ecc71" />
-              </C.editButton>
-              <C.excludeButton onPress={() => onExclude(item.id)}>
-                <FontAwesome5 name="trash-alt" size={25} color="#e74c3c" />
-              </C.excludeButton>
+              {item.photo && (
+                <C.imgContainer>
+                  <Image
+                    source={{ uri: item.photo }}
+                    style={{ width: 80, height: 120 }}
+                  />
+                </C.imgContainer>
+              )}
+              <C.contentItem>
+                <C.contentTitle>
+                  <C.itemButton onPress={() => handleRead(item.read, item.id)}>
+                    <C.itemText
+                      style={{ fontFamily: 'Kalam' }}
+                      read={item.read}
+                    >
+                      {item.title}
+                    </C.itemText>
+                  </C.itemButton>
+
+                  <C.editButton onPress={() => handleItem(item.id)}>
+                    <AntDesign name="edit" size={20} color="#2ecc71" />
+                  </C.editButton>
+
+                  <C.excludeButton onPress={() => onExclude(item.id)}>
+                    <FontAwesome5 name="trash-alt" size={20} color="#e74c3c" />
+                  </C.excludeButton>
+                </C.contentTitle>
+                <C.description>
+                  <Text style={{ fontFamily: 'Kalam' }}>
+                    {item.description}
+                  </Text>
+                </C.description>
+              </C.contentItem>
             </C.itemContainer>
-          </>
-        )}
-      />
-    </C.Container>
+          )}
+        />
+      </C.Container>
+    </ScrollView>
   )
   else return null
 }
