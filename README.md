@@ -27,12 +27,12 @@ O site é composto por 2 seções:
 O projeto visou a prática do desenvolvimento a partir do React Native:
 
 - React Native;
-- Async Storage;
 - JavaScript;
 - Html;
 - Css;
 - Styled Components ( Estilização );
-- React navigation native ( Gerenciamento de rotas)
+- Async Storage ( Armazenamento de dados );
+- React navigation native ( Gerenciamento de rotas )
 - ImagePicker ( Upload de imagens )
 - Vector-Icons ( Ícones )
 
